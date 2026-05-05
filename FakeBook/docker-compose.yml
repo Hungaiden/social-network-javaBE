@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: fakebook-redis
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - redis_data:/data
+
+  app:
+    build: .
+    container_name: fakebook-app
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file: .env
+    environment:
+      SPRING_REDIS_HOST: redis
+    depends_on:
+      redis:
+        condition: service_healthy
+
+volumes:
+  redis_data:

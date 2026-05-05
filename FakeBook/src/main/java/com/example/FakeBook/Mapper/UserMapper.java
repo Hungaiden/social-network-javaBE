@@ -15,11 +15,15 @@ import java.util.List;
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface UserMapper {
     User toEntity(UserCreationRequest request);
+
     @Mapping(source = "id", target = "userId")
     UserDetailResponse toUserDetailResponse(User user);
+
     @Mapping(source = "id", target = "userId")
     UserResponseBase toUserBaseResponse(User user);
+
     List<UserDetailResponse> toUserDetailResponseList(List<User> userList);
+
     @Mapping(target = "password", ignore = true)
     void update(@MappingTarget User user, UserUpdateRequest request);
 }

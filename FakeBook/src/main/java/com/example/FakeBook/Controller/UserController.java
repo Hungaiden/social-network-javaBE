@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,9 +21,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/user")
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "user")
+@RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    private UserFacadeService userFacadeService;
+    private final UserFacadeService userFacadeService;
 
     @Operation(
             summary = "Tao user moi",

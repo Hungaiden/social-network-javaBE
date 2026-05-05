@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
@@ -122,7 +123,7 @@ public class PostFacadeService {
     }
 
     //Lay bai viet trang home (ban than + ban be), sap xep theo thoi gian moi nhat
-    public PagedResponse<PostResponse> getNewsFeed(Pageable pageable) {
+    public PagedResponse<PostResponse> getNewsFeed(@PageableDefault(page = 0, size = 10, sort = "createdAt") Pageable pageable) {
         UUID currentUserId = UUID.fromString(authService.getCurrentUserId());
 
         // Lay danh sach ban be
@@ -137,4 +138,5 @@ public class PostFacadeService {
 
         return postService.getNewsFeed(userIds, pageable);
     }
+
 }

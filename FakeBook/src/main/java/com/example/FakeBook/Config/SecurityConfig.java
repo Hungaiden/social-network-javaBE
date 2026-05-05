@@ -33,7 +33,7 @@ public class SecurityConfig {
 
     CustomJwtDecoder customJwtDecoder;
 
-    String[] PUBLIC_ENDPOINT_POST = { "/api/v1/auth/logout", "/api/v1/auth/login", "/api/v1/user" };
+    String[] PUBLIC_ENDPOINT_POST = { "/api/v1/auth/logout", "/api/v1/auth/login", "/api/v1/auth/register", "/api/v1/user" };
     String[] PUBLIC_ENDPOINT_GET = {};
     
     // ----------------- Security Filter Chain -----------------
@@ -88,7 +88,8 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
                 "http://localhost:5173",
-                "http://localhost:8080"
+                "http://localhost:8080",
+                "https://fakebook-trend.vercel.app"
 //                "http://127.0.0.1:*"
         ));
         configuration.setAllowedMethods(Arrays.asList("*"));
