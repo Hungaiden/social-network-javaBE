@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class UserDetailResponse extends UserResponseBase{
     private String email;
-    private String role;
+//    private String role;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

@@ -124,9 +124,17 @@
 			<scope>provided</scope>
 		</dependency>
 
+        <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- cloudinary -->
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>1.39.0</version>
         </dependency>
 
     </dependencies>

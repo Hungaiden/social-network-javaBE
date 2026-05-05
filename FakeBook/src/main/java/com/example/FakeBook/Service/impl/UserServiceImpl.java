@@ -49,14 +49,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetailResponse updateUser(UserUpdateRequest request, UUID userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
-        //Neu trong request password not null and not blank
-        if (request.getPassword() != null && !request.getPassword().isBlank()) {
-            //Kiem tra mat khau co khac mat khau cu ko
-            if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-                request.setPassword(passwordEncoder.encode(request.getPassword()));
-            }
-            else throw new AppException(ErrorCode.PASSWORD_DUPLICATED);
+
+        if (!user.getUsername().equals(request.getUsername())) {
+            if (userRepository.existsByUsername(request.getUsername())) throw new AppException(ErrorCode.USERNAME_EXIST);
         }
+        userMapper.update(user, request);
+
+        // Xử lý riêng phần password vì cần encode
+        if (request.getPassword() != null && !request.getPassword().isBlank()) {
+            if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+                throw new AppException(ErrorCode.PASSWORD_DUPLICATED);
+            }
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
+
         return userMapper.toUserDetailResponse(userRepository.save(user));
     }
 

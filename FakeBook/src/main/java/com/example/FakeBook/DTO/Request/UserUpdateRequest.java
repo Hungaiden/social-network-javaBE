@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class UserUpdateRequest {
-    @Size(min = 10, message = "DISPLAYNAME_INVALID")
+    @Size(min = 5, message = "DISPLAYNAME_INVALID")
     private String displayName;
 
-    @Size(min = 10, message = "USERNAME_INVALID")
+    @Size(min = 5, message = "USERNAME_INVALID")
     private String username;
 
     @Size(min = 8, message = "PASSWORD_INVALID")
@@ -24,4 +24,5 @@ public class UserUpdateRequest {
     @Email(message = "EMAIL_INVALID")
     private String email;
 
+    private String avatar;
 }

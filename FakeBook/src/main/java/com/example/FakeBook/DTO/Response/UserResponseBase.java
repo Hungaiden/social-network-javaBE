@@ -19,6 +19,4 @@ public class UserResponseBase {
     private String displayName;
 
     private String avatar;
-
-
 }

@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -37,7 +38,18 @@ public class User {
     private String email;
 
     private String phone;
+
     private String avatar;
+
+    private String coverPhoto; // Ảnh bìa
+
+    private String bio;        // Tiểu sử ngắn
+
+    private String address;    // Địa chỉ
+
+    private LocalDate dob;     // Ngày sinh
+
+    private String occupation; // Nghề nghiệp
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
